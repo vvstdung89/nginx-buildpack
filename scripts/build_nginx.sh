@@ -19,7 +19,8 @@ pcre_tarball_url=http://garr.dl.sourceforge.net/project/pcre/pcre/${PCRE_VERSION
 headers_more_nginx_module_url=https://github.com/agentzh/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 
 temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
-
+echo "Move module ngx_http_libvlc_module to /${temp_dir}"
+cp -r ngx_http_libvlc_module /${temp_dir}/.
 
 echo "Serving files from /tmp on $PORT"
 cd /tmp
@@ -37,8 +38,7 @@ echo "Downloading $pcre_tarball_url"
 echo "Downloading $headers_more_nginx_module_url"
 (cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
 
-echo "Move module ngx_http_libvlc_module to /${temp_dir}/nginx-${NGINX_VERSION}"
-cp -r /app/ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
+
 
 (
 	cd nginx-${NGINX_VERSION}
@@ -46,7 +46,7 @@ cp -r /app/ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
 		--with-pcre=pcre-${PCRE_VERSION} \
 		--prefix=/tmp/nginx \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
-		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/ngx_http_libvlc_module
+		--add-module=/${temp_dir}/ngx_http_libvlc_module
 	make install
 )
 

@@ -16,7 +16,7 @@ run_getenv (const char * name,char* result)
     }
     else {
         printf ("%s = %s size %d %d\n", name, value,(int)strlen(value),(int)sizeof(result));
-        memset(result, '\0', sizeof(result));
+        memset(result, '\0', 100);
         strcpy(result,value);
         return 0;
     }
