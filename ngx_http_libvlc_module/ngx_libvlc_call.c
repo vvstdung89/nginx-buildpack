@@ -74,11 +74,11 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
 	// sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
 
-  // printf("1\n");
+  printf("1\n");
 
     sprintf(smem_options
       , "#transcode { vcodec=h264,vb=512,scale=1,acodec=none,venc=x264{aud,profile=baseline,level=30,keyint=15, bframes=0,ref=1,nocabac}}:duplicate{dst=std{access=livehttp{"
-         "seglen=10,  numsegs=5,delsegs=true,index=%s,"
+         "seglen=10, numsegs=5, delsegs=true,index=%s,"
          "index-url=%s},dst=%s,mux=ts{use-key-frames} }"
       , index_location //index file location-> access through web service ex: /var/www/html/hls/f8ee546866a511e4a73f22000b0f0a0c/list.m3u8
       , index_url //http://127.0.0.1/f8ee546866a511e4a73f22000b0f0a0c/data-#########.ts
@@ -92,7 +92,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     // printf("%s \n",log_file);
     // printf("%s \n",uri);
 
-    // printf("2\n");
+    printf("2\n");
 
     const char * const vlc_args[] = {
               "-I", "dummy", // Don't use any interface
@@ -104,10 +104,11 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
               "--sout", smem_options // Stream to memory
                };
 
-         // printf("3\n");      
+    printf("3\n");      
+
     inst = libvlc_new( 6, vlc_args);
     
-    // printf("4\n");
+    printf("4\n");
 
     // create a new item
     m = libvlc_media_new_path(inst, uri);
