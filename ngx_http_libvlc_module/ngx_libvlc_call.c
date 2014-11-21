@@ -67,6 +67,8 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 		    mkdir(location, 0775);
 	}
 
+  printf("URI %s \n",uri);
+  
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
@@ -102,7 +104,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 
     inst = libvlc_new( sizeof(vlc_args) / sizeof(vlc_args[0]), vlc_args);
     
-    printf("URI %s \n",uri);
+    
 
     // create a new item
     m = libvlc_media_new_path(inst, uri);
@@ -119,10 +121,6 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 
     // play the media_player
     libvlc_media_player_play(mp);
-
-
-   
-
 
     printf("%s \n","play media");
     // wait for file present

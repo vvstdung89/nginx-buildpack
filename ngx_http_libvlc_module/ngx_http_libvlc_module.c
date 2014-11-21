@@ -132,7 +132,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     if (b == NULL) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
-    printf("url %s\n",r->uri.data);
+    
 
 
 
@@ -163,8 +163,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 	
 
     if (result == 0){ //trancode request match match
-    	memset(uri, '\0', r->uri.len+1);
-    	memset(uri, '\0', r->uri.len+1);
+    	memset(uri, '\0', 1000);
     	strcpy(uri,"http://");
     	memcpy(uri+7, r->uri.data+21,r->uri.len-21);
     	// sleep(10);
