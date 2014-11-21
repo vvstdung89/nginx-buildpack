@@ -74,7 +74,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
 	// sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
 
-  printf("1\n");
+  // printf("1\n");
 
     sprintf(smem_options
       , "#transcode { vcodec=h264,vb=512,scale=1,acodec=none,venc=x264{aud,profile=baseline,level=30,keyint=15, bframes=0,ref=1,nocabac}}:duplicate{dst=std{access=livehttp{"
@@ -93,7 +93,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     // printf("%s \n",log_file);
     // printf("%s \n",uri);
 
-    printf("2\n");
+    // printf("2\n");
 
     const char * const vlc_args[] = {
               "-I", "dummy", // Don't use any interface
@@ -107,14 +107,14 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 
     printf("3\n");      
 
-    inst = libvlc_new( sizeof(vlc_args) / sizeof(vlc_args[0]), vlc_args);
+    inst = libvlc_new( 6, vlc_args);
     
     printf("4\n");
 
     // create a new item
     m = libvlc_media_new_path(inst, uri);
 
-    printf("5\n");
+    // printf("5\n");
     // create a media play playing environment
     mp = libvlc_media_player_new_from_media(m);
 
@@ -132,7 +132,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     // play the media_player
     libvlc_media_player_play(mp);
 
-    // printf("%s \n","play media");
+    printf("%s \n","play media");
     // wait for file present
     int counter = 0;
     while (counter++ <= 150) { // Time out set to 60 seconds

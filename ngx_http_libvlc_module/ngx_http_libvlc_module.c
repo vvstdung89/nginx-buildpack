@@ -154,6 +154,11 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 	transcode_option->index_prefix_url = (char*) malloc(100*sizeof(char*));
 	transcode_option->ts_prefix_location = (char*) malloc(100*sizeof(char*));
 
+    memset(transcode_option->request_id, '\0',100);
+    memset(transcode_option->index_prefix_location, '\0',100);
+    memset(transcode_option->index_prefix_url, '\0', 100);
+    memset(transcode_option->ts_prefix_location, '\0', 100);
+
 	generateGUID(transcode_option->request_id);
 
 	// printf("%s \n",transcode_option->request_id);
@@ -163,7 +168,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 	
 
     if (result == 0){ //trancode request match match
-    	memset(uri, '\0', r->uri.len+1);
+    	memset(uri, '\0', 1000);
     	strcpy(uri,"http://");
     	memcpy(uri+7, r->uri.data+21,r->uri.len-21);
     	// sleep(10);
