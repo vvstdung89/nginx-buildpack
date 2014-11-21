@@ -107,7 +107,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 
     printf("3\n");      
 
-    inst = libvlc_new( 6, vlc_args);
+    inst = libvlc_new( sizeof(vlc_args) / sizeof(vlc_args[0]), vlc_args);
     
     printf("4\n");
 
