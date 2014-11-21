@@ -2,6 +2,16 @@ daemon off;
 #Heroku dynos have at least 4 cores.
 worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
+#environment which help worker know where to store transcoded file and expose link
+#ex. /apt/html/hls
+env INDEX_PREFIX_LOCATION=<%= ENV['INDEX_PREFIX_LOCATION']%>;
+
+#ex. http://yourapp.heroku.com/hls
+env INDEX_PREFIX_URL=<%= ENV['INDEX_PREFIX_URL'] %>;
+
+#ex. /apt/html/hls
+env TS_PREFIX_LOCATION=<%= ENV['TS_PREFIX_LOCATION'] %>;
+
 events {
 	use epoll;
 	accept_mutex on;
@@ -36,11 +46,16 @@ http {
 		keepalive_timeout 5;
 
 		location / {
-			return 200;
+			root   html;
+			index  index.html index.htm;
 			#proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 			#proxy_set_header Host $http_host;
 			#proxy_redirect off;
 			#proxy_pass http://app_server;
 		}
+		
+		location ~ ^/transcode/hls {
+	            trancode " ";
+	    	}
 	}
 }
