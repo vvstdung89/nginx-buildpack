@@ -85,6 +85,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
       , ts_location  //ts file location-> access through web service ex: /var/www/html/hls/f8ee546866a511e4a73f22000b0f0a0c/data-#########.ts
       );
 
+
     // printf("%s \n",index_location);
     // printf("%s \n",index_url);
     // printf("%s \n",ts_location);
