@@ -58,7 +58,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
   	char index_location[1000];
   	char index_url[1000];
 	char ts_location[1000];
-	char log_file[100];
+	
 	
 	char location[100];
 	struct stat st;
@@ -72,9 +72,9 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
-	sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
+	// sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
 
-  printf("1\n");
+  // printf("1\n");
 
     sprintf(smem_options
       , "#transcode { vcodec=h264,vb=512,scale=1,acodec=none,venc=x264{aud,profile=baseline,level=30,keyint=15, bframes=0,ref=1,nocabac}}:duplicate{dst=std{access=livehttp{"
@@ -92,7 +92,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     // printf("%s \n",log_file);
     // printf("%s \n",uri);
 
-    printf("2\n");
+    // printf("2\n");
 
     const char * const vlc_args[] = {
               "-I", "dummy", // Don't use any interface
@@ -104,10 +104,10 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
               "--sout", smem_options // Stream to memory
                };
 
-         printf("3\n");      
+         // printf("3\n");      
     inst = libvlc_new( 6, vlc_args);
     
-    printf("4\n");
+    // printf("4\n");
 
     // create a new item
     m = libvlc_media_new_path(inst, uri);
@@ -117,20 +117,20 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     mp = libvlc_media_player_new_from_media(m);
 
 
-    printf("6\n");
+    // printf("6\n");
     //event manager
     libvlc_event_manager_t* p_em = libvlc_media_player_event_manager( mp );
     libvlc_event_attach(p_em, libvlc_MediaPlayerEndReached, hls_callback, (void *)cdata );
 
 
-    printf("7\n");
+    // printf("7\n");
     // no need to keep the media now
     libvlc_media_release(m);
 
     // play the media_player
     libvlc_media_player_play(mp);
 
-    printf("%s \n","play media");
+    // printf("%s \n","play media");
     // wait for file present
     int counter = 0;
     while (counter++ <= 150) { // Time out set to 60 seconds
