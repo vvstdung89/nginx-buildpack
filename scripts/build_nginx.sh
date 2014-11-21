@@ -9,8 +9,8 @@
 # Once the dyno has is 'up' you can open your browser and navigate
 # this dyno's directory structure to download the nginx binary.
 
-NGINX_VERSION=1.5.7
-PCRE_VERSION=8.21
+NGINX_VERSION=1.7.5
+PCRE_VERSION=8.35
 HEADERS_MORE_VERSION=0.23
 
 
@@ -38,7 +38,7 @@ echo "Downloading $headers_more_nginx_module_url"
 (cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
 
 echo "Move module ngx_http_libvlc_module to /${temp_dir}/nginx-${NGINX_VERSION}"
-mv -r ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
+cp -r ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
 
 (
 	cd nginx-${NGINX_VERSION}
