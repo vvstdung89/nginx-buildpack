@@ -20,9 +20,10 @@ headers_more_nginx_module_url=https://github.com/agentzh/headers-more-nginx-modu
 
 temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
 
+
 echo "Serving files from /tmp on $PORT"
 cd /tmp
-python -m SimpleHTTPServer $PORT &
+#python -m SimpleHTTPServer $PORT &
 
 cd $temp_dir
 echo "Temp dir: $temp_dir"
@@ -36,13 +37,16 @@ echo "Downloading $pcre_tarball_url"
 echo "Downloading $headers_more_nginx_module_url"
 (cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
 
+echo "Move module ngx_http_libvlc_module to /${temp_dir}/nginx-${NGINX_VERSION}"
+mv -r ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
+
 (
 	cd nginx-${NGINX_VERSION}
 	./configure \
 		--with-pcre=pcre-${PCRE_VERSION} \
 		--prefix=/tmp/nginx \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION}
-		--add-module=../ngx_http_libvlc_module
+		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/ngx_http_libvlc_module
 	make install
 )
 
