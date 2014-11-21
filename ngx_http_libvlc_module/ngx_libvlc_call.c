@@ -25,7 +25,7 @@ void* doGarbageCollect(void *arg)
 
 	libvlc_release((libvlc_instance_t *) *data->inst);
 
-
+  free(data);
     return NULL;
 }
 
