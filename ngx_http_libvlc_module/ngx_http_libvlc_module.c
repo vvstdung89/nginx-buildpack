@@ -99,7 +99,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     ngx_int_t    rc;
     ngx_buf_t   *b;
     ngx_chain_t  out;
- 	
+ 	printf("libvlc handler");
  	char* trancode_link_respond = malloc(1000*sizeof(char*));
 
     /* we response to 'GET' and 'HEAD' requests only */
@@ -140,22 +140,22 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     //checking transcode service again (not neccessary)
     //nginx configuration be done this check instead
     char prefix_url[1000];
-    char *request_id = malloc(100*sizeof(char *));// = "id1234556789";
-   
+    hls_transcode_option*   transcode_option  = (hls_transcode_option*) malloc(sizeof(hls_transcode_option));
     char uri[1000];
+
+
+    transcode_option->request_id = (char *)malloc(100*sizeof(char *));// = "id1234556789";
 
     strcpy(prefix_url,"/transcode/hls/http:/");
 
     int result = strncmp((char* )r->uri.data, prefix_url, 21);
-
-    hls_transcode_option* 	transcode_option  = (hls_transcode_option*) malloc(sizeof(hls_transcode_option));
+    
 	transcode_option->index_prefix_location = (char*) malloc(100*sizeof(char*));
 	transcode_option->index_prefix_url = (char*) malloc(100*sizeof(char*));
 	transcode_option->ts_prefix_location = (char*) malloc(100*sizeof(char*));
 
-	generateGUID(request_id);
+	generateGUID(transcode_option->request_id);
 
-	transcode_option->request_id=request_id;
 	// printf("%s \n",transcode_option->request_id);
 	run_getenv("INDEX_PREFIX_LOCATION", transcode_option->index_prefix_location);
 	run_getenv("INDEX_PREFIX_URL", transcode_option->index_prefix_url);
@@ -182,7 +182,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     	
     	//response no thing
     }
- 
+    
     /* attach this buffer to the buffer chain */
     out.buf = b;
     out.next = NULL;
