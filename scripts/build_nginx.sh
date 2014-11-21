@@ -38,14 +38,14 @@ echo "Downloading $headers_more_nginx_module_url"
 (cd nginx-${NGINX_VERSION} && curl -L $headers_more_nginx_module_url | tar xvz )
 
 echo "Move module ngx_http_libvlc_module to /${temp_dir}/nginx-${NGINX_VERSION}"
-cp -r ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
+cp -r /app/ngx_http_libvlc_module /${temp_dir}/nginx-${NGINX_VERSION}/.
 
 (
 	cd nginx-${NGINX_VERSION}
 	./configure \
 		--with-pcre=pcre-${PCRE_VERSION} \
 		--prefix=/tmp/nginx \
-		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION}
+		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/ngx_http_libvlc_module
 	make install
 )
