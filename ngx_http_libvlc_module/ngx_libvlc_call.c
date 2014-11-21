@@ -54,13 +54,13 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
     libvlc_media_t *m;
 	callback_media_data *cdata = (callback_media_data*) malloc( sizeof(callback_media_data*) );
 
-    char smem_options[1000];
+    char smem_options[2000];
   	char index_location[1000];
   	char index_url[1000];
 	char ts_location[1000];
 	
 	
-	char location[100];
+	char location[1000];
 	struct stat st;
 	sprintf(location, "%s/%s",option->index_prefix_location,option->request_id);
 	if (stat(location, &st) == -1) {
