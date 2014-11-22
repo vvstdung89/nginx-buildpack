@@ -192,6 +192,8 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 
     } else {
     	strcpy(trancode_link_respond,"no thing");
+        hello_string.data = (u_char *)trancode_link_respond;
+        hello_string.len = strlen(trancode_link_respond);
         printf("no thing to response\n");
     	//response no thing
     }
