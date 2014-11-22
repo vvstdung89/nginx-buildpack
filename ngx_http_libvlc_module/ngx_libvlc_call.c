@@ -61,6 +61,15 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	char *log_file = malloc( 1000*sizeof(char*) );
 	
 	char *location = malloc( 1000*sizeof(char*) );
+
+
+  memset(smem_options, '\0',1000);
+memset(index_location, '\0',1000);
+memset(index_url, '\0',1000);
+memset(ts_location, '\0',1000);
+memset(log_file, '\0',1000);
+memset(location, '\0',1000);
+
 	struct stat st;
 	sprintf(location, "%s/%s",option->index_prefix_location,option->request_id);
 	if (stat(location, &st) == -1) {
@@ -99,7 +108,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
               "-I", "dummy", // Don't use any interface
               "--ignore-config", // Don't use VLC's config
               "vlc://quit", // 
-              "-v", // Be verbose,
+              "-v ", // Be verbose,
               "--file-logging", //enable logfile
               "--logfile", log_file, 
               "--sout", smem_options // Stream to memory
