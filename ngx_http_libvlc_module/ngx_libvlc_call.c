@@ -81,7 +81,8 @@ memset(location, '\0',1000);
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
-	sprintf(log_file,"/app/logs/libvlc/test.log",option->request_id);
+	sprintf(log_file,"/app/logs/libvlc/test.log");
+  // sprintf(log_file,"/app/logs/libvlc/%s.log",option->request_id);
 
   // printf("1\n");
 
