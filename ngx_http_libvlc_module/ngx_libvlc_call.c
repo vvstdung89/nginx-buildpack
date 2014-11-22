@@ -58,7 +58,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
   char *index_location = malloc( 1000*sizeof(char*) ); 
   char *index_url =  malloc( 1000*sizeof(char*) );
 	char *ts_location = malloc( 1000*sizeof(char*) );
-	
+	char *log_file = malloc( 1000*sizeof(char*) );
 	
 	char *location = malloc( 1000*sizeof(char*) );
 	struct stat st;
@@ -72,7 +72,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
-	// sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
+	sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
 
   // printf("1\n");
 
@@ -99,15 +99,15 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
               "-I", "dummy", // Don't use any interface
               "--ignore-config", // Don't use VLC's config
               "vlc://quit", // 
-              // "-v", // Be verbose,
-              // "--file-logging", //enable logfile
-              // "--logfile", log_file, 
+              "-v", // Be verbose,
+              "--file-logging", //enable logfile
+              "--logfile", log_file, 
               "--sout", smem_options // Stream to memory
                };
 
     printf("3\n");      
 
-    inst = libvlc_new( 6, vlc_args);
+    inst = libvlc_new( 10, vlc_args);
     
     printf("4\n");
 

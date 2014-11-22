@@ -19,9 +19,12 @@ erb config/nginx.conf.erb > config/nginx.conf
 #Initialize log directory.
 mkdir -p logs/nginx
 touch logs/nginx/access.log logs/nginx/error.log
+mkdir -p html/hls
+mkdir -p logs/libvlc
+
 echo 'buildpack=nginx at=logs-initialized'
 
-mkdir -p html/hls
+
 #Start log redirection.
 # (
 # 	#Redirect NGINX logs to stdout.
