@@ -105,15 +105,7 @@ memset(location, '\0',1000);
               "--sout", smem_options // Stream to memory
                };
     
-    const char * const vlc_args[] = {
-      "-I", "dummy", // Don't use any interface
-      "--ignore-config", // Don't use VLC's config
-      "vlc://quit", // 
-      "-vvv", // Be verbose,
-      "--file-logging", //enable logfile
-      "--logfile", "logs/f8ee546866a511e4a73f22000b0f0a0c.log", 
-      "--sout", smem_options // Stream to memory
-       };
+    
 
     printf("3\n");      
 
