@@ -63,7 +63,10 @@ int ngx_libvlc_hls_convert(char* uri_, hls_transcode_option* option, char* res) 
 	char *location = malloc( 1000*sizeof(char*) );
 
 
-  memset(smem_options, '\0',1000);
+
+
+
+memset(smem_options, '\0',1000);
 memset(index_location, '\0',1000);
 memset(index_url, '\0',1000);
 memset(ts_location, '\0',1000);
@@ -155,6 +158,16 @@ memset(uri, '\0',1000);
 			cdata->m=&m;
 			cdata->inst=&inst;
 			sprintf(res,"%s/%s/list.m3u8",option->index_prefix_url,option->request_id);
+
+      free(smem_options);
+      free(index_location);
+      free(index_url);
+      free(ts_location);
+      free(log_file);
+      free(location);
+      free(uri);
+
+
 			return 0;
 		}
     }
@@ -168,5 +181,12 @@ memset(uri, '\0',1000);
     libvlc_release(inst);
     sprintf(res,"Request time out");
 
+    free(smem_options);
+    free(index_location);
+    free(index_url);
+    free(ts_location);
+    free(log_file);
+    free(location);
+    free(uri);
 	return -1;
 }

@@ -219,7 +219,17 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     if (rc == NGX_ERROR || rc > NGX_OK || r->header_only) {
         return rc;
     }
- 
+    
+
+    free(prefix_url);
+    free(uri);
+    free(trancode_link_respond);
+    free(transcode_option->request_id);
+    free(transcode_option->index_prefix_location);
+    free(transcode_option->index_prefix_url);
+    free(transcode_option->ts_prefix_location);
+
+
     /* send the buffer chain of your response */
     return ngx_http_output_filter(r, &out);
 }
