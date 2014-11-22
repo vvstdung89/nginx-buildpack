@@ -123,7 +123,7 @@ memset(uri, '\0',1000);
     printf("4\n");
 
     // create a new item
-    m = libvlc_media_new_path(inst, uri);
+    m = libvlc_media_new_location(inst, uri);
 
     // printf("5\n");
     // create a media play playing environment
