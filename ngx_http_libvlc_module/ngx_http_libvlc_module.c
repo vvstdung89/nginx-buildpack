@@ -140,19 +140,24 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     //checking transcode service again (not neccessary)
     //nginx configuration be done this check instead
     char *prefix_url = malloc(100*sizeof(char*));
+    memset(prefix_url, '\0',100);
     char *uri = malloc(1000*sizeof(char*));
+    memset(uri, '\0',1000);
     char* trancode_link_respond = malloc(100*sizeof(char*));
+    memset(trancode_link_respond, '\0',100);
+
 
     hls_transcode_option*   transcode_option  = (hls_transcode_option*) malloc(sizeof(hls_transcode_option));
    
+    
+
+    strcpy(prefix_url,"/transcode/hls/http:/");
+    int result = strncmp((char* )r->uri.data, prefix_url, 21);
+
+    
 
 
     transcode_option->request_id = (char *)malloc(100*sizeof(char *));// = "id1234556789";
-
-    strcpy(prefix_url,"/transcode/hls/http:/");
-
-    int result = strncmp((char* )r->uri.data, prefix_url, 21);
-    
 	transcode_option->index_prefix_location = (char*) malloc(100*sizeof(char*));
 	transcode_option->index_prefix_url = (char*) malloc(100*sizeof(char*));
 	transcode_option->ts_prefix_location = (char*) malloc(100*sizeof(char*));
@@ -171,7 +176,6 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 	
 
     if (result == 0){ //trancode request match match
-    	memset(uri, '\0', 1000);
     	strcpy(uri,"http://");
     	memcpy(uri+7, r->uri.data+21,r->uri.len-21);
     	// sleep(10);
@@ -187,7 +191,8 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 
 
     } else {
-    	
+    	strcpy(trancode_link_respond,"no thing");
+        printf("no thing to response");
     	//response no thing
     }
     
