@@ -72,7 +72,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
-	sprintf(log_file,"/var/log/ngx-libvlc/%s.log",option->request_id);
+	sprintf(log_file,"/app/logs/libvlc/%s.log",option->request_id);
 
   // printf("1\n");
 
@@ -86,12 +86,12 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
       );
 
 
-    // printf("%s \n",index_location);
-    // printf("%s \n",index_url);
-    // printf("%s \n",ts_location);
-    // printf("%s \n",smem_options);
-    // printf("%s \n",log_file);
-    // printf("%s \n",uri);
+    printf("%s \n",index_location);
+    printf("%s \n",index_url);
+    printf("%s \n",ts_location);
+    printf("%s \n",smem_options);
+    printf("%s \n",log_file);
+    printf("%s \n",uri);
 
     // printf("2\n");
 
