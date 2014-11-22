@@ -38,7 +38,7 @@ generateGUID(char* GUID){
 	gettimeofday (&tv,0);
 	srand ((unsigned int)tv.tv_sec);
 	int t = 0;
-	char *szTemp = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";
+	char *szTemp = "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx";
 	char *szHex = "0123456789ABCDEF-";
 	int nLen = strlen (szTemp);
 
