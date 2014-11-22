@@ -1,3 +1,5 @@
 libvlc-dev
 vlc
 libavcodec-extra-53
+libav-tools
+libasound2-data
