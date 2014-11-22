@@ -141,7 +141,7 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     //nginx configuration be done this check instead
     char *prefix_url = malloc(100*sizeof(char*));
     char *uri = malloc(1000*sizeof(char*));
-    char* trancode_link_respond = malloc(1000*sizeof(char*));
+    char* trancode_link_respond = malloc(100*sizeof(char*));
 
     hls_transcode_option*   transcode_option  = (hls_transcode_option*) malloc(sizeof(hls_transcode_option));
    

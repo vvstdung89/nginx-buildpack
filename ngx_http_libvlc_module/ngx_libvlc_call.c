@@ -47,7 +47,7 @@ void hls_callback(const libvlc_event_t* event, void* ptr){
 }
 
 
-int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
+int ngx_libvlc_hls_convert(char* uri_, hls_transcode_option* option, char* res) {
 
 	libvlc_instance_t *inst;
   libvlc_media_player_t *mp;
@@ -59,7 +59,7 @@ int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
   char *index_url =  malloc( 1000*sizeof(char*) );
 	char *ts_location = malloc( 1000*sizeof(char*) );
 	char *log_file = malloc( 1000*sizeof(char*) );
-	
+	char *uri = malloc( 1000*sizeof(char*) );
 	char *location = malloc( 1000*sizeof(char*) );
 
 
@@ -69,6 +69,7 @@ memset(index_url, '\0',1000);
 memset(ts_location, '\0',1000);
 memset(log_file, '\0',1000);
 memset(location, '\0',1000);
+memset(uri, '\0',1000);
 
 	struct stat st;
 	sprintf(location, "%s/%s",option->index_prefix_location,option->request_id);
@@ -78,6 +79,7 @@ memset(location, '\0',1000);
 
   printf("URI %s \n",uri);
 
+  sprintf(uri, "%s", uri_);
 	sprintf(index_location, "%s/%s/list.m3u8", option->index_prefix_location,option->request_id);
 	sprintf(index_url, "%s/%s/data-#########.ts", option->index_prefix_url,option->request_id);
 	sprintf(ts_location, "%s/%s/data-#########.ts", option->ts_prefix_location,option->request_id);
