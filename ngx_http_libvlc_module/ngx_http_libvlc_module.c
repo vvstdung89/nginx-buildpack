@@ -141,8 +141,8 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     //nginx configuration be done this check instead
     char *prefix_url = malloc(100*sizeof(char*));
     memset(prefix_url, '\0',100);
-    char *uri = malloc(1000*sizeof(char*));
-    memset(uri, '\0',1000);
+    char *uri = malloc(500*sizeof(char*));
+    memset(uri, '\0',500);
     char* trancode_link_respond = malloc(100*sizeof(char*));
     memset(trancode_link_respond, '\0',100);
 
@@ -182,18 +182,18 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     	//start to call transcode Function
     	
     	if (ngx_libvlc_hls_convert(uri, transcode_option, trancode_link_respond) == 0){
-    		hello_string.data = (u_char *)trancode_link_respond;
-    		hello_string.len = strlen(trancode_link_respond);
+    		// hello_string.data = (u_char *)trancode_link_respond;
+    		// hello_string.len = strlen(trancode_link_respond);
     	} else {
-    		hello_string.data = (u_char *)trancode_link_respond;
-    		hello_string.len = strlen(trancode_link_respond);
+    		// hello_string.data = (u_char *)trancode_link_respond;
+    		// hello_string.len = strlen(trancode_link_respond);
     	}
 
 
     } else {
     	strcpy(trancode_link_respond,"no thing");
-        hello_string.data = (u_char *)trancode_link_respond;
-        hello_string.len = strlen(trancode_link_respond);
+        // hello_string.data = (u_char *)trancode_link_respond;
+        // hello_string.len = strlen(trancode_link_respond);
         printf("no thing to response\n");
     	//response no thing
     }
@@ -204,14 +204,14 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
  
     /* adjust the pointers of the buffer */
     //r->headers_in
-    b->pos = hello_string.data;
-    b->last = hello_string.data + hello_string.len;
+    b->pos = (u_char *)trancode_link_respond;
+    b->last = (u_char*)trancode_link_respond + strlen(trancode_link_respond);
     b->memory = 1;    /* this buffer is in memory */
     b->last_buf = 1;  /* this is the last buffer in the buffer chain */
  
     /* set the status line */
     r->headers_out.status = NGX_HTTP_OK;
-    r->headers_out.content_length_n = hello_string.len;
+    r->headers_out.content_length_n = strlen(trancode_link_respond);
  
     /* send the headers of your response */
     rc = ngx_http_send_header(r);
