@@ -50,17 +50,17 @@ void hls_callback(const libvlc_event_t* event, void* ptr){
 int ngx_libvlc_hls_convert(char* uri, hls_transcode_option* option, char* res) {
 
 	libvlc_instance_t *inst;
-    libvlc_media_player_t *mp;
-    libvlc_media_t *m;
+  libvlc_media_player_t *mp;
+  libvlc_media_t *m;
 	callback_media_data *cdata = (callback_media_data*) malloc( sizeof(callback_media_data*) );
 
-    char smem_options[2000];
-  	char index_location[1000];
-  	char index_url[1000];
-	char ts_location[1000];
+  char *smem_options = malloc( 1000*sizeof(char*) );
+  char *index_location = malloc( 1000*sizeof(char*) ); 
+  char *index_url =  malloc( 1000*sizeof(char*) );
+	char *ts_location = malloc( 1000*sizeof(char*) );
 	
 	
-	char location[1000];
+	char *location = malloc( 1000*sizeof(char*) );
 	struct stat st;
 	sprintf(location, "%s/%s",option->index_prefix_location,option->request_id);
 	if (stat(location, &st) == -1) {

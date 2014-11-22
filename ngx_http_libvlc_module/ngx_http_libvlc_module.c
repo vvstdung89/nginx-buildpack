@@ -99,8 +99,8 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
     ngx_int_t    rc;
     ngx_buf_t   *b;
     ngx_chain_t  out;
- 	printf("libvlc handler");
- 	char* trancode_link_respond = malloc(1000*sizeof(char*));
+ 	printf("libvlc handler\n");
+ 	
 
     /* we response to 'GET' and 'HEAD' requests only */
     if (!(r->method & (NGX_HTTP_GET|NGX_HTTP_HEAD))) {
@@ -139,9 +139,12 @@ ngx_http_libvlc_handler(ngx_http_request_t *r)
 
     //checking transcode service again (not neccessary)
     //nginx configuration be done this check instead
-    char prefix_url[1000];
+    char *prefix_url = malloc(100*sizeof(char*));
+    char *uri = malloc(1000*sizeof(char*));
+    char* trancode_link_respond = malloc(1000*sizeof(char*));
+
     hls_transcode_option*   transcode_option  = (hls_transcode_option*) malloc(sizeof(hls_transcode_option));
-    char uri[1000];
+   
 
 
     transcode_option->request_id = (char *)malloc(100*sizeof(char *));// = "id1234556789";
