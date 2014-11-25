@@ -66,8 +66,8 @@ if (test -f .compile_vlc); then
 	cp /usr/include/xcb/shm.h /app/.apt/usr/include/xcb/.
 	export CFLAGS_libmpeg2=-I/app/.apt/usr/include/mpeg2dec
 	export CFLAGS_lua=-I/app/.apt/usr/include/lua5.2 -I/app/.apt/usr/include//x86_64-linux-gnu
-
-	export 
+	export LUA_CFLAGS=-I/app/.apt/usr/include/lua5.2 -I/app/.apt/usr/include//x86_64-linux-gnu
+	cp  /app/.apt/usr/include/x86_64-linux-gnu/lua5.2-deb-multiarch.h /app/.apt/usr/include/lua5.2/.
 	# ln -s /usr/lib/x86_64-linux-gnu/libgcrypt.so /app/.apt/usr/lib/.
 	# export LIBRARY_PATH=$LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/:
 
@@ -100,14 +100,14 @@ if (test -f .compile_vlc); then
 			--prefix=/tmp/vlc 
 		make install
 
-		cd /tmp
-		tar -zcvf vlc.tar.gz /tmp/vlc
+		#cd /tmp
+		#tar -zcvf vlc.tar.gz /tmp/vlc
 	)	
 fi
 
 
 while true
 do
-	sleep 1
+	sleep 10
 	echo "."
 done
