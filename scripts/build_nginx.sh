@@ -61,7 +61,9 @@ if (test -f .compile_vlc); then
 	#luac rename
 	ln -s /app/.apt/usr/bin/luac5.2 /app/.apt/usr/bin/luac
 	cp /usr/include/xcb/xcb.h /app/.apt/usr/include/xcb/.
-
+	cp /usr/include/xcb/xproto.h /app/.apt/usr/include/xcb/.
+	cp /usr/include/xcb/render.h /app/.apt/usr/include/xcb/.
+	cp /usr/include/xcb/shm.h /app/.apt/usr/include/xcb/.
 	# ln -s /usr/lib/x86_64-linux-gnu/libgcrypt.so /app/.apt/usr/lib/.
 	# export LIBRARY_PATH=$LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/:
 
