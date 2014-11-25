@@ -65,6 +65,7 @@ if (test -f .compile_vlc); then
 	cp /usr/include/xcb/render.h /app/.apt/usr/include/xcb/.
 	cp /usr/include/xcb/shm.h /app/.apt/usr/include/xcb/.
 	export CFLAGS_libmpeg2=-I/app/.apt/usr/include/mpeg2dec
+	export CFLAGS_lua=-I/app/.apt/usr/include/lua5.2
 	# ln -s /usr/lib/x86_64-linux-gnu/libgcrypt.so /app/.apt/usr/lib/.
 	# export LIBRARY_PATH=$LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/:
 
