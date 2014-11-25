@@ -19,6 +19,9 @@ pcre_tarball_url=http://garr.dl.sourceforge.net/project/pcre/pcre/${PCRE_VERSION
 headers_more_nginx_module_url=https://github.com/agentzh/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 vlc_url=http://download.videolan.org/pub/videolan/vlc/${VLC_VERSION}/vlc-${VLC_VERSION}.tar.xz
 
+echo "Start script"
+python -m SimpleHTTPServer $PORT &
+
 if (test -f .compile_nginx); then 
 	temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
 	echo "Move module ngx_http_libvlc_module to /${temp_dir}"
@@ -26,7 +29,7 @@ if (test -f .compile_nginx); then
 
 	echo "Serving files from /tmp on $PORT"
 	cd /tmp
-	python -m SimpleHTTPServer $PORT &
+	
 
 	cd $temp_dir
 	echo "Temp dir: $temp_dir"
