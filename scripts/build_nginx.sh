@@ -57,6 +57,9 @@ fi
 if (test -f .compile_vlc); then 
 	#luac rename
 	ln -s /app/.apt/usr/bin/luac5.2 /app/.apt/usr/bin/luac
+	# ln -s /usr/lib/x86_64-linux-gnu/libgcrypt.so /app/.apt/usr/lib/.
+	# export LIBRARY_PATH=$LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/:
+	
 	temp_dir=$(mktemp -d /tmp/vlc.XXXXXXXXXX)
 	cur_dir=`pwd`
 	cd $temp_dir

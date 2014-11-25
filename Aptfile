@@ -1,9 +1,4 @@
-libvlc-dev
-vlc
-libavcodec-extra-54
 libav-tools
-libasound2-data
-libproxy-tools
 libxcb1-dev
 libxcb-shm0-dev 
 libxcb-composite0-dev 
