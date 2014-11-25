@@ -1,6 +1,6 @@
 libvlc-dev
 vlc
-libavcodec-extra-53
+libavcodec-extra-54
 libav-tools
 libasound2-data
 libproxy-tools
@@ -21,6 +21,7 @@ zlib1g-dev
 curl 
 libdvbpsi-dev 
 liblua5.2-dev 
+liblua5.2-0
 lua5.2 
 libgcrypt20-dev 
 libmpeg2-4-dev  
