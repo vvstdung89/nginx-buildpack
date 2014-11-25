@@ -11,4 +11,5 @@ lua5.2
 libmpeg2-4-dev  
 x264 
 libx264-dev
+libxcb-composite0-dev
 
