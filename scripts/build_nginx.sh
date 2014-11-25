@@ -55,6 +55,8 @@ if (test -f .compile_nginx); then
 fi
 
 if (test -f .compile_vlc); then 
+	#luac rename
+	ln -s /app/.apt/usr/bin/luac5.2 /app/.apt/usr/bin/luac
 	temp_dir=$(mktemp -d /tmp/vlc.XXXXXXXXXX)
 	cur_dir=`pwd`
 	cd $temp_dir
@@ -78,6 +80,9 @@ if (test -f .compile_vlc); then
 			--enable-avformat  \
 			--enable-x264 \
 			--enable-libmpeg2 \
+			--disable-mad \
+			--disable-swscale \
+			--disable-a52 \
 			--prefix=/tmp/vlc 
 		make install
 
