@@ -76,7 +76,7 @@ if (test -f .compile_vlc); then
 			cp -rf vlc-${VLC_VERSION}/* /${temp_dir}/vlc-${VLC_VERSION}/. 
 		fi
 		cd /${temp_dir}/vlc-${VLC_VERSION}
-		./bootstrap
+		# ./bootstrap
 		./configure \
 			--disable-glx \
 			--enable-libgcrypt \
