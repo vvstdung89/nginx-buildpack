@@ -18,10 +18,7 @@ libdvbpsi-dev
 liblua5.2-dev 
 liblua5.2-0
 lua5.2
-libgcrypt11*
 libmpeg2-4-dev  
 x264 
 libx264-dev
-libmpeg2-4-dev
-libx11-dev
-vim
+

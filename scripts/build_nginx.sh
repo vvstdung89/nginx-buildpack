@@ -84,7 +84,6 @@ if (test -f .compile_vlc); then
 			--enable-avcodec \
 			--enable-avformat  \
 			--enable-x264 \
-			--enable-libmpeg2 \
 			--disable-mad \
 			--disable-swscale \
 			--disable-a52 \
