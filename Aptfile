@@ -3,7 +3,7 @@ xcb
 libxcb1-dev
 libxcb-shm0-dev 
 libxcb-composite0-dev 
-libxcb-record0-dev
+libxcb-render0-dev
 libxcb-xv0-dev 
 libxcb-randr0-dev 
 libxcb-keysyms1-dev 
