@@ -19,9 +19,10 @@ pcre_tarball_url=http://garr.dl.sourceforge.net/project/pcre/pcre/${PCRE_VERSION
 headers_more_nginx_module_url=https://github.com/agentzh/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 vlc_url=http://download.videolan.org/pub/videolan/vlc/${VLC_VERSION}/vlc-${VLC_VERSION}.tar.xz
 
+
+echo "Start script"
 cur_dir=`pwd`
 cd /tmp
-echo "Start script"
 python -m SimpleHTTPServer $PORT &
 cd $cur_dir
 

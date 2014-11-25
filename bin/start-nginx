@@ -61,6 +61,10 @@ echo 'buildpack=nginx at=logs-initialized'
 # 	#We expect nginx to run in foreground.
 # 	#We also expect a socket to be at /tmp/nginx.socket.
 # 	echo 'buildpack=nginx at=nginx-start'
+	export LD_LIBRARY_PATH=/app/.apt/usr/lib/vlc/lib:$LD_LIBRARY_PATH
+	export INCLUDE_PATH=/app/.apt/usr/lib/vlc/include:$INCLUDE_PATH
+	export CPATH=/app/.apt/usr/lib/vlc/include:$CPATH
+	export CPPPATH=/app/.apt/usr/lib/vlc/include:$CPPPATH
 	bin/nginx -p . -c config/nginx.conf
 # 	echo 'nginx' >$psmgr
 # ) &
