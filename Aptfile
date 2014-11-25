@@ -1,14 +1,8 @@
-libxcb-composite0-dev 
-libxcb-xv0-dev 
-libxcb-randr0-dev 
-libxcb-keysyms1-dev 
 libasound2-dev 
 build-essential 
 libtool 
+libavcodec-dev 
 libavformat-dev 
-libavcodec-extra-54 
-libavformat-dev 
-libavformat-extra-54 
 zlib1g-dev 
 curl 
 libdvbpsi-dev 
