@@ -1,2 +1,0 @@
-#! /bin/sh
-exec /tmp/vlc/bin/vlc -I "rc" "$@"
