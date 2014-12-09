@@ -52,6 +52,7 @@ types {
     application/x-xpinstall               xpi;
     application/xhtml+xml                 xhtml;
     application/zip                       zip;
+    application/x-mpegURL                 m3u8  ;
 
     application/octet-stream              bin exe dll;
     application/octet-stream              deb;
@@ -73,4 +74,5 @@ types {
     video/x-ms-asf                        asx asf;
     video/x-ms-wmv                        wmv;
     video/x-msvideo                       avi;
+    video/MP2T                            ts ;
 }
