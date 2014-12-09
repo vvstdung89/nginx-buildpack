@@ -46,7 +46,7 @@ http {
 		location / {
 			root   html;
 			index  index.html index.htm;
-			more_clear_headers 'Content-Length';
+			#more_clear_headers 'Content-Length'; -> does not work with hls
 			#proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 			#proxy_set_header Host $http_host;
 			#proxy_redirect off;
