@@ -60,7 +60,7 @@ http {
     	}
 
     	location ~ ^/transcode/pseudo-hls? {
-    			add_header Access-Control-Expose-Headers: Location
+    			add_header Access-Control-Expose-Headers: Location;
 	            transcode " ";
     	}
 
