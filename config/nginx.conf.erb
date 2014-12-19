@@ -55,10 +55,12 @@ http {
 		}
 		
 		location ~ ^/transcode/hls? {
+				add_header Access-Control-Allow-Origin *;
 	            transcode " ";
     	}
 
     	location ~ ^/transcode/pseudo-hls? {
+    			add_header Access-Control-Allow-Origin *;
 	            transcode " ";
     	}
 
