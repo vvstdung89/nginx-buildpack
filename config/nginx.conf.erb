@@ -58,7 +58,7 @@ http {
 		
 		location ~ ^/transcode/hls? {
 				add_header Access-Control-Allow-Origin *;
-				add_header Access-Control-Expose-Headers Location
+				add_header Access-Control-Expose-Headers Location;
 	            transcode " ";
     	}
 
