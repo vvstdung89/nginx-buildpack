@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Transcoding Playground</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Transcoding Playground</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                    <input id="hostIp" type="text" placeholder="Host IP" class="form-control" value="54.173.114.107">
+                </div>
+                <div class="form-group">
+                    <input id="hostPort" type="text" placeholder="Host Port" class="form-control" value="80">
+                </div>
+            </form>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>How to play?</h1>
+
+        <p>1. Fill in the Load Balancer Ip and Port in the top right corner.</p>
+
+        <p>2. Fill in Source url.</p>
+
+        <div class="form-group">
+            <input id="sourceUrl" type="text" placeholder="Source Url ex http://www.w3schools.com/html/mov_bbb.mp4" class="form-control" value="">
+        </div>
+
+        <p>3. Fill in Target format (hls or pseudo-hls)</p>
+
+        <div class="form-group">
+            <input id="targetFormat" type="text" placeholder="ex: pseudo-hls" class="form-control"
+                   value="">
+        </div>
+
+        <p>4. Fill in other Options.</p>
+
+        <div class="form-group">
+            uid: <input id="uid" type="text" placeholder="Optionally<string>(ex A1B2C3D4)" class="form-control" value="" width='20'>
+            venc: <input id="venc" type="text" placeholder="Optionally<string>(ex x264)" class="form-control" value="">
+            vcodec: <input id="vcodec" type="text" placeholder="Optionally<string> (ex: x264{aud,profile=baseline,level=30,keyint=15,ref=1,preset=fast})" class="form-control" value="">
+            vb: <input id="vb" type="text" placeholder="Optionally<number> (ex: 256)" class="form-control" value="">
+            scale: <input id="scale" type="text" placeholder="Optionally<number> (ex: 1)" class="form-control" value="">
+            fps: <input id="fps" type="text" placeholder="Optionally<number> (ex: 25)" class="form-control" value="">
+            hurry_up: <input id="hurry_up" type="text" placeholder="Optionally<boolean> (ex: true)" class="form-control" value="">
+            deinterlace: <input id="deinterlace" type="text" placeholder="Optionally<boolean> (ex: true)" class="form-control" value="">
+            width: <input id="width" type="text" placeholder="Optionally<number> (ex: 900)" class="form-control" value="">
+            height: <input id="height" type="text" placeholder="Optionally<number> (ex: 900)" class="form-control" value="">
+            maxwidth: <input id="maxwidth" type="text" placeholder="Optionally<number> (ex: 900)" class="form-control" value="">
+            maxheight: <input id="maxheight" type="text" placeholder="Optionally<number> (ex: 900)" class="form-control" value="">
+            vfilters: <input id="filters" type="text" placeholder="Optionally<string>" class="form-control" value="">
+            aenc: <input id="aenc" type="text" placeholder="Optionally<string> " class="form-control" value="">
+            acodec: <input id="acodec" type="text" placeholder="Optionally<string> (ex mp3)" class="form-control" value="">
+            ab: <input id="ab" type="text" placeholder="Optionally<number> (ex: 30)" class="form-control" value="">
+            alang: <input id="alang" type="text" placeholder="Optionally<string>" class="form-control" value="">
+            channels: <input id="channels" type="text" placeholder="Optionally<number> (ex: 2)" class="form-control" value="">
+            samplerate: <input id="samplerate" type="text" placeholder="Optionally<number> (ex: 24000)" class="form-control" value="">
+            audio_sync: <input id="audio_sync" type="text" placeholder="Optionally<boolean> (ex: true)" class="form-control" value="">
+            afilters: <input id="afilters" type="text" placeholder="Optionally<string>" class="form-control" value="">
+        </div>
+
+        <p>5. Verification</p>
+
+
+        <p><a id='clearBtn' class="btn btn-primary btn-lg" role="button">Clear &raquo;</a></p>
+        <p><a id='playBtn' class="btn btn-primary btn-lg" role="button">Add &raquo;</a></p>
+
+        <ol id="streamList">
+            
+        </ol>
+    </div>
+</div>
+
+<div class="container">
+    <hr>
+    <footer>
+        <p>&copy; TopCoder (R) 2014</p>
+    </footer>
+</div>
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+
+
+    $(function () {
+
+        
+        
+        $('#clearBtn').click(function () {
+            $('#streamList').empty();
+        });
+
+        $('#playBtn').click(function () {
+            var host = $('#hostIp').val().trim();
+            var port = $('#hostPort').val().trim();
+            var targetFormat = $('#targetFormat').val().trim();
+            var sourceUrl = $('#sourceUrl').val().trim();
+            var uid = $('#uid').val().trim();
+            var venc = $('#venc').val().trim();
+            var vcodec = $('#vcodec').val().trim();
+            var vb = $('#vb').val().trim();
+            var scale = $('#scale').val().trim();
+            var fps = $('#fps').val().trim();
+            var hurry_up = $('#hurry_up').val().trim();
+            var deinterlace = $('#deinterlace').val().trim();
+            var width = $('#width').val().trim();
+            var height = $('#height').val().trim();
+            var maxwidth = $('#maxwidth').val().trim();
+            var maxheight = $('#maxheight').val().trim();
+            var filters = $('#filters').val().trim();
+            var aenc = $('#aenc').val().trim();
+            var acodec = $('#acodec').val().trim();
+            var ab = $('#ab').val().trim();
+            var alang = $('#alang').val().trim();
+            var channels = $('#channels').val().trim();
+            var samplerate = $('#samplerate').val().trim();
+            var audio_sync = $('#audio_sync').val().trim();
+            var afilters = $('#afilters').val().trim();
+
+            if (host=="") alert("HostIP is empty");
+            else if (port=="") alert("Port is empty");
+            else if (sourceUrl=="") alert("SourceUrl is empty");
+            else if (targetFormat=="") alert("Target format is empty");
+            else {
+                var options = "";
+                var addLink = "HostIP: "  + host;
+                addLink += "\nPort: " + port;
+                addLink += "\nUrl: " + sourceUrl;
+                addLink += "\ntargetFormat: " + targetFormat;
+                if (uid !== "")  { addLink += "\nuid: " + uid; options += "&uid=" + encodeURIComponent(uid)};
+                if (venc !== "")  { addLink += "\nvenc: " + venc; options += "&venc=" + encodeURIComponent(venc)};
+                if (vcodec !== "")  { addLink += "\nvcodec: " + vcodec; options += "&vcodec=" + encodeURIComponent(vcodec)};
+                if (vb !== "")  { addLink += "\nvb: " + vb; options += "&vb=" + encodeURIComponent(vb)};
+                if (scale !== "")  { addLink += "\nscale: " + scale; options += "&scale=" + encodeURIComponent(scale)};
+                if (fps !== "")  { addLink += "\nfps: " + fps; options += "&fps=" + encodeURIComponent(fps)};
+                if (hurry_up !== "")  { addLink += "\nhurry_up: " + hurry_up; options += "&hurry_up=" + encodeURIComponent(hurry_up)};
+                if (deinterlace !== "")  { addLink += "\ndeinterlace: " + deinterlace; options += "&deinterlace=" + encodeURIComponent(deinterlace)};
+                if (width !== "")  { addLink += "\nwidth: " + width; options += "&width=" + encodeURIComponent(width)};
+                if (height !== "")  { addLink += "\nheight: " + height; options += "&height=" + encodeURIComponent(height)};
+                if (maxwidth !== "")  { addLink += "\nmaxwidth: " + maxwidth; options += "&maxwidth=" + encodeURIComponent(maxwidth)};
+                if (maxheight !== "")  { addLink += "\nmaxheight: " + maxheight; options += "&maxheight=" + encodeURIComponent(maxheight)};
+                if (filters !== "")  { addLink += "\nfilters: " + filters; options += "&filters=" + encodeURIComponent(filters)};
+                if (aenc !== "")  { addLink += "\naenc: " + aenc; options += "&aenc=" + encodeURIComponent(aenc)};
+                if (acodec !== "")  { addLink += "\nacodec: " + acodec; options += "&acodec=" + encodeURIComponent(acodec)};
+                if (ab !== "")  { addLink += "\nab: " + ab; options += "&ab=" + encodeURIComponent(ab)};
+                if (alang !== "")  { addLink += "\nalang: " + alang; options += "&alang=" + encodeURIComponent(alang)};
+                if (channels !== "")  { addLink += "\nchannels: " + channels; options += "&channels=" + encodeURIComponent(channels)};
+                if (samplerate !== "")  { addLink += "\nsamplerate: " + samplerate; options += "&samplerate=" + encodeURIComponent(samplerate)};
+                if (audio_sync !== "")  { addLink += "\naudio_sync: " + audio_sync; options += "&audio_sync=" + encodeURIComponent(audio_sync)};
+                if (afilters !== "")  { addLink += "\nafilters: " + afilters; options += "&afilters=" + encodeURIComponent(afilters)};
+
+                if (confirm(addLink)) {
+
+                    
+
+                    var link = 'http://' + host + ':' + port + '/transcode/' + targetFormat
+                            + '?url=' + encodeURIComponent(sourceUrl) +options;
+
+                    var source_video = 'source URL: <a href="javascript:void(0)">' + sourceUrl +'</a><br/><video width="320" height="240" controls> <source src=' + sourceUrl + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="'+sourceUrl+'" /><br /><br/>';
+                    
+                    var transcode_video = '';
+
+                    $('#streamList').append(source_video);
+
+                    $.ajax({
+                        type: "GET",
+                        url: link,
+                        success: function(data, status, xhr) {
+                            console.log(xhr.getResponseHeader('Info'));
+                            transcode_video = 'trancode URL: <a href="http://'+xhr.getResponseHeader('Info')+'">http://' + xhr.getResponseHeader('Info') +'<a/><br/><video width="320" height="240" controls> <source src=' + xhr.getResponseHeader('Info') + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="http://'+xhr.getResponseHeader('Info')+'" /><br/>'
+                            $('#streamList').append(transcode_video);
+                        }
+                    });
+
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

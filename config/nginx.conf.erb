@@ -47,7 +47,7 @@ http {
 			root   html;
 			index  index.html index.htm;
 			add_header Access-Control-Allow-Origin *;
-			add_header Access-Control-Expose-Headers Info; #allow javascript read Location header
+			add_header Access-Control-Expose-Headers Info; #allow javascript read Info header
 			add_header Info $http_host$request_uri;
 			#more_clear_headers 'Content-Length'; -> work for pseudo-hls but not work with hls
 			#proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; -> does not use upstream server
