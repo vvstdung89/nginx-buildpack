@@ -189,30 +189,30 @@
                 if (audio_sync !== "")  { addLink += "\naudio_sync: " + audio_sync; options += "&audio_sync=" + encodeURIComponent(audio_sync)};
                 if (afilters !== "")  { addLink += "\nafilters: " + afilters; options += "&afilters=" + encodeURIComponent(afilters)};
 
-                if (confirm(addLink)) {
+                
 
                     
 
-                    var link = 'http://' + host + ':' + port + '/transcode/' + targetFormat
-                            + '?url=' + encodeURIComponent(sourceUrl) +options;
+                var link = 'http://' + host + ':' + port + '/transcode/' + targetFormat
+                        + '?url=' + encodeURIComponent(sourceUrl) +options;
 
-                    var source_video = 'source URL: <a href="' + sourceUrl +'">' + sourceUrl +'</a><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + sourceUrl + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="'+sourceUrl+'" /><br /><br/>';
-                    
-                    var transcode_video = '';
+                var source_video = 'source URL: <a href="' + sourceUrl +'">' + sourceUrl +'</a><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + sourceUrl + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="'+sourceUrl+'" /><br /><br/>';
+                
+                var transcode_video = '';
 
-                    $('#streamList').append(source_video);
+                $('#streamList').append(source_video);
 
-                    $.ajax({
-                        type: "GET",
-                        url: link,
-                        success: function(data, status, xhr) {
-                            console.log(xhr.getResponseHeader('Info'));
-                            transcode_video = 'trancode URL: <a href="http://'+xhr.getResponseHeader('Info')+'">http://' + xhr.getResponseHeader('Info') +'<a/><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + xhr.getResponseHeader('Info') + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="http://'+xhr.getResponseHeader('Info')+'" /><br/>'
-                            $('#streamList').append(transcode_video);
-                        }
-                    });
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    success: function(data, status, xhr) {
+                        console.log(xhr.getResponseHeader('Info'));
+                        transcode_video = 'trancode URL: <a href="http://'+xhr.getResponseHeader('Info')+'">http://' + xhr.getResponseHeader('Info') +'<a/><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + xhr.getResponseHeader('Info') + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="http://'+xhr.getResponseHeader('Info')+'" /><br/>'
+                        $('#streamList').append(transcode_video);
+                    }
+                });
 
-                }
+                
             }
         });
     });
