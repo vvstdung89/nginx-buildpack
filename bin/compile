@@ -24,7 +24,8 @@ mkdir -p "$1/logs/libvlc"
 #copy test_page
 cp index.php "$1/html/"
 
-cp config/mime.types "$1/config/"
+cp config/* "$1/config/"
+
 echo '-----> nginx-buildpack: Default mime.types copied to app/config/'
 
 if [[ ! -f $1/config/nginx.conf.erb ]]; then
