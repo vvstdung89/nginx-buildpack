@@ -22,7 +22,7 @@ mkdir -p "$1/html/hls"
 mkdir -p "$1/logs/libvlc"
 
 #copy test_page
-cp index.html "$1/html/"
+cp index.php "$1/html/"
 
 cp config/mime.types "$1/config/"
 echo '-----> nginx-buildpack: Default mime.types copied to app/config/'
