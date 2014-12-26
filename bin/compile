@@ -22,7 +22,7 @@ mkdir -p "$1/html/hls"
 mkdir -p "$1/logs/libvlc"
 
 #copy test_page
-cp index.php "$1/html/"
+cp index.html "$1/html/"
 cp test.js "$1/"
 
 cp config/* "$1/config/"
