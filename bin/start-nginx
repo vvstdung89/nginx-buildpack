@@ -65,7 +65,8 @@ echo 'buildpack=nginx at=logs-initialized'
 	export INCLUDE_PATH=/app/.apt/usr/lib/vlc/include:$INCLUDE_PATH
 	export CPATH=/app/.apt/usr/lib/vlc/include:$CPATH
 	export CPPPATH=/app/.apt/usr/lib/vlc/include:$CPPPATH
-	bin/nginx -p . -c config/nginx.conf
+	bin/nginx -p . -c config/nginx.conf &
+	node test.js
 # 	echo 'nginx' >$psmgr
 # ) &
 

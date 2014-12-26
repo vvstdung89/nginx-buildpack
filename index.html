@@ -124,7 +124,7 @@
 
     $(function () {
 
-        
+        document.getElementById('hostIp').value = location.host;
         
         $('#clearBtn').click(function () {
             $('#streamList').empty();
@@ -201,16 +201,20 @@
                 var transcode_video = '';
 
                 $('#streamList').append(source_video);
-
-                $.ajax({
-                    type: "GET",
-                    url: link,
-                    success: function(data, status, xhr) {
-                        console.log(xhr.getResponseHeader('Info'));
-                        transcode_video = 'trancode URL: <a href="http://'+xhr.getResponseHeader('Info')+'">http://' + xhr.getResponseHeader('Info') +'<a/><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + xhr.getResponseHeader('Info') + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="http://'+xhr.getResponseHeader('Info')+'" /><br/>'
-                        $('#streamList').append(transcode_video);
-                    }
+                var host = location.href+'test';
+                console.log(host)
+                $.post(host,{
+                    url: host,
+                    port: port,
+                    option: '/transcode/' + targetFormat + '?url=' + encodeURIComponent(sourceUrl) +options
+                }).done(function(data){
+                    console.log(data);
+                    transcode_video = 'trancode URL: <a href="'+data+'">' + data +'<a/><br/><video width="320" height="240" loop autoplay controls="true" > <source src=' + data + ' > Your browser does not support the video tag. </video> <embed type="application/x-vlc-plugin"        name="video1"         autoplay="no" loop="yes" width="320" height="240"         target="'+data+'" /><br/>'
+                    $('#streamList').append(transcode_video);
                 });
+                
+
+                
 
                 
             }
@@ -220,4 +224,6 @@
 
 </body>
 </html>
+
+
 
